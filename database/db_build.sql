@@ -23,7 +23,7 @@ INSERT INTO users (username, password) VALUES
     ("shivani", "ilikebooks"),
     ("meeran", "ilikerunescape");
 
-INSERT INTO facts (author_id, spell_name) VALUES 
+INSERT INTO spells (author_id, spell_name) VALUES 
     (1, "Incendio"),
     (2, "Expelliamus");
 
