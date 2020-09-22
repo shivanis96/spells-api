@@ -12,7 +12,8 @@ const app = express();
 app.use(express.json());
 
 //add routes here
+app.get("/spells/:id", spells.getSpellById);
 
-server.use(handleError);
+//app.use(handleError);
 
 app.listen(PORT, () => console.log(`Listening on http:localhost:${PORT}`));

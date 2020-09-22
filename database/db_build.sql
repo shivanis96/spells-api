@@ -20,11 +20,11 @@ CREATE TABLE spells
 );
 
 INSERT INTO users (username, password) VALUES 
-    ("shivani", ""),
-    ("meeran", "");
+    ('shivani', 'ilikebooks'),
+    ('meeran', 'ilikerunescape');
 
 INSERT INTO spells (author_id, spell_name) VALUES 
-    (1, "Incendio"),
-    (2, "Expelliamus");
+    (1, 'Incendio'),
+    (2, 'Expelliamus');
 
 COMMIT;
