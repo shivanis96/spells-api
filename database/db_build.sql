@@ -8,7 +8,7 @@ CREATE TABLE users
 (
     id SERIAL PRIMARY KEY,
     username VARCHAR(225) NOT NULL UNIQUE,
-    password TEXT NOT NULL,
+    password TEXT NOT NULL
 );
 
 CREATE TABLE spells
@@ -20,8 +20,8 @@ CREATE TABLE spells
 );
 
 INSERT INTO users (username, password) VALUES 
-    ("shivani", "ilikebooks"),
-    ("meeran", "ilikerunescape");
+    ("shivani", ""),
+    ("meeran", "");
 
 INSERT INTO spells (author_id, spell_name) VALUES 
     (1, "Incendio"),
