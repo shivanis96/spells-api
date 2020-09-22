@@ -12,6 +12,7 @@ const app = express();
 app.use(express.json());
 
 //add routes here
+app.get("/spells/", spells.getAllSpells);
 app.get("/spells/:id", spells.getSpellById);
 
 //app.use(handleError);

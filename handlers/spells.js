@@ -4,11 +4,18 @@ const getSpellById = (req, res, next) => {
   const id = req.params.id;
   console.log(id);
   model
-    .readSpell(id)
+    .readSpellById(id)
     .then((spells) => {
       res.send(spells);
     })
     .catch(next);
 };
 
-module.exports = { getSpellById };
+const getAllSpells = (req, res, next) => {
+  model
+    .readAllSpells()
+    .then((spells) => res.send(spells))
+    .catch(next);
+};
+
+module.exports = { getSpellById, getAllSpells };
