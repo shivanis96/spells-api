@@ -1,6 +1,9 @@
 const bcrypt = require("bcryptjs");
-const { response } = require("express");
 const model = require("../model/users");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
+
+const SECRET = process.env.JWT_SECRET;
 
 const signup = (req, res, next) => {
   const addedUser = req.body;
@@ -13,7 +16,11 @@ const signup = (req, res, next) => {
         password: hash,
       })
     )
-    .then((user) => res.status(201).send(user))
+    .then((user) => {
+      const token = jwt.sign({ user: user.id }, SECRET, { expiresIn: "1h" });
+      user.access_token = token;
+      res.status(201).send(user);
+    })
     .catch(next);
 };
 
