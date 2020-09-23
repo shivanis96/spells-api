@@ -17,6 +17,7 @@ const signup = (req, res, next) => {
       })
     )
     .then((user) => {
+      //use the secret to sign containing the added users id which expires in 1 hour
       const token = jwt.sign({ user: user.id }, SECRET, { expiresIn: "1h" });
       user.access_token = token;
       res.status(201).send(user);
@@ -24,4 +25,8 @@ const signup = (req, res, next) => {
     .catch(next);
 };
 
+// const login = (req, res, next) => {
+//     const user = req.body
+
+// };
 module.exports = { signup };
