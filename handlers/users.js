@@ -47,4 +47,11 @@ const login = (req, res, next) => {
     })
     .catch(next);
 };
-module.exports = { signup, login };
+
+const getAllUsers = (req, res, next) => {
+  model
+    .readAllUsers()
+    .then((users) => res.send(users))
+    .catch(next);
+};
+module.exports = { signup, login, getAllUsers };

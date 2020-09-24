@@ -11,10 +11,12 @@ const app = express();
 
 app.use(express.json());
 
-//add routes here
+//spells routes
 app.get("/spells/", spells.getAllSpells);
 app.get("/spells/:id", spells.getSpellById);
 
+//user routes
+app.get("/users", user.getAllUsers);
 app.post("/signup", user.signup);
 app.post("/login", user.login);
 

@@ -22,9 +22,16 @@ const readUser = (username) => {
     });
 };
 
-// const readUser = (username) => {
-//   return db
-//     .query("SELECT * FROM users WHERE username=($1)", [username])
-//     .then((result) => result.rows[0]);
-// };
-module.exports = { createUser, readUser };
+//readUserById
+const readUserById = (username) => {
+  return db.query("SELECT * FROM users WHERE id=($1)", [id]).then((result) => {
+    if (!result.rows.length) throw new Error(`No user with id '${id}' found`);
+    return result.rows[0];
+  });
+};
+
+//readAllUsers
+const readAllUsers = () => {
+  return db.query("SELECT * FROM users").then((result) => result.rows);
+};
+module.exports = { createUser, readUser, readUserById, readAllUsers };
