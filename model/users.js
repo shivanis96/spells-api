@@ -16,10 +16,15 @@ const readUser = (username) => {
   return db
     .query("SELECT * FROM users WHERE username=($1)", [username])
     .then((result) => {
-      result.rows[0];
-      //   if (!result.rows.length)
-      //     throw new Error(`No user with email '${email}' found`);
-      //   return result.rows[0];
+      if (!result.rows.length)
+        throw new Error(`No user with username '${username}' found`);
+      return result.rows[0];
     });
 };
-module.exports = { createUser };
+
+// const readUser = (username) => {
+//   return db
+//     .query("SELECT * FROM users WHERE username=($1)", [username])
+//     .then((result) => result.rows[0]);
+// };
+module.exports = { createUser, readUser };

@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const model = require("../model/users");
 const jwt = require("jsonwebtoken");
+const { urlencoded } = require("express");
 require("dotenv").config();
 
 const SECRET = process.env.JWT_SECRET;
@@ -25,8 +26,25 @@ const signup = (req, res, next) => {
     .catch(next);
 };
 
-// const login = (req, res, next) => {
-//     const user = req.body
-
-// };
-module.exports = { signup };
+const login = (req, res, next) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  model
+    .readUser(username)
+    .then((user) => {
+      bcrypt.compare(password, user.password).then((match) => {
+        if (!match) {
+          const error = new Error("Unauthorised");
+          error.status = 403;
+          next(error);
+        } else {
+          const token = jwt.sign({ user: user.id }, SECRET, {
+            expiresIn: "1h",
+          });
+          res.status(200).send({ access_token: token });
+        }
+      });
+    })
+    .catch(next);
+};
+module.exports = { signup, login };

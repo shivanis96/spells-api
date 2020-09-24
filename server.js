@@ -16,6 +16,7 @@ app.get("/spells/", spells.getAllSpells);
 app.get("/spells/:id", spells.getSpellById);
 
 app.post("/signup", user.signup);
+app.post("/login", user.login);
 
 //app.use(handleError);
 
