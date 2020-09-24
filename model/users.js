@@ -23,7 +23,7 @@ const readUser = (username) => {
 };
 
 //readUserById
-const readUserById = (username) => {
+const readUserById = (id) => {
   return db.query("SELECT * FROM users WHERE id=($1)", [id]).then((result) => {
     if (!result.rows.length) throw new Error(`No user with id '${id}' found`);
     return result.rows[0];

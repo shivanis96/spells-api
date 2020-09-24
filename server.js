@@ -16,6 +16,7 @@ app.get("/spells/", spells.getAllSpells);
 app.get("/spells/:id", spells.getSpellById);
 
 //user routes
+app.get("/users/:id", user.getUserById);
 app.get("/users", user.getAllUsers);
 app.post("/signup", user.signup);
 app.post("/login", user.login);

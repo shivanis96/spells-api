@@ -47,6 +47,16 @@ const login = (req, res, next) => {
     })
     .catch(next);
 };
+const getUserById = (req, res, next) => {
+  const id = req.params.id;
+  //console.log(id);
+  model
+    .readUserById(id)
+    .then((user) => {
+      res.send(user);
+    })
+    .catch(next);
+};
 
 const getAllUsers = (req, res, next) => {
   model
@@ -54,4 +64,4 @@ const getAllUsers = (req, res, next) => {
     .then((users) => res.send(users))
     .catch(next);
 };
-module.exports = { signup, login, getAllUsers };
+module.exports = { signup, login, getUserById, getAllUsers };
