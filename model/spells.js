@@ -17,7 +17,7 @@ const readAllSpells = () => {
 };
 
 //creates spells
-const createSpells = (data) => {
+const createSpell = (data) => {
   return db
     .query(
       "INSERT INTO spells (author_id, spell_name) VALUES ($1, $2) RETURNING *",
@@ -27,8 +27,8 @@ const createSpells = (data) => {
 };
 
 //delete spells
-const deleteSpells = (id) => {
+const deleteSpell = (id) => {
   return db.query("DELETE FROM spells WHERE id=$1", [id]);
 };
 
-module.exports = { readSpellById, readAllSpells, createSpells, deleteSpells };
+module.exports = { readSpellById, readAllSpells, createSpell, deleteSpell };

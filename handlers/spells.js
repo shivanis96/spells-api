@@ -23,10 +23,19 @@ const createSpells = (req, res, next) => {
     author_id: req.user.id,
     spell_name: req.body.spell_name,
   };
-
   model
-    .createSpells(data)
+    .createSpell(data)
     .then((spells) => res.status(201).send(spells))
     .catch(next);
 };
-module.exports = { getSpellById, getAllSpells, createSpells };
+
+const deleteSpells = (req, res, next) => {
+  const spellId = req.params.id;
+  model
+    .deleteSpell(spellId)
+    .then(() => {
+      res.status(204).send();
+    })
+    .catch(next);
+};
+module.exports = { getSpellById, getAllSpells, createSpells, deleteSpells };
