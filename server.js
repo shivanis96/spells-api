@@ -15,7 +15,7 @@ app.use(express.json());
 app.get("/spells/", spells.getAllSpells);
 app.get("/spells/:id", spells.getSpellById);
 app.post("/spells/", verifyUser, spells.createSpells);
-app.delete("/spells/:id", spells.deleteSpells);
+app.delete("/spells/:id", verifyUser, spells.deleteSpells);
 
 //user routes
 app.get("/users/:id", user.getUserById);

@@ -31,11 +31,20 @@ const createSpells = (req, res, next) => {
 
 const deleteSpells = (req, res, next) => {
   const spellId = req.params.id;
-  model
-    .deleteSpell(spellId)
-    .then(() => {
-      res.status(204).send();
-    })
-    .catch(next);
+  const userId = req.user.id;
+  model.readSpellById(spellId).then((spells) => {
+    if (spells.author_id !== userId) {
+      const error = new Error("User not authorised");
+      error.status = 401;
+      next(error);
+    } else {
+      model
+        .deleteSpell(spellId)
+        .then(() => {
+          res.status(204).send("This spell no longer exists");
+        })
+        .catch(next);
+    }
+  });
 };
 module.exports = { getSpellById, getAllSpells, createSpells, deleteSpells };
