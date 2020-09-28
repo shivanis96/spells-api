@@ -23,6 +23,7 @@ const createSpells = (req, res, next) => {
     author_id: req.user.id,
     spell_name: req.body.spell_name,
   };
+
   model
     .createSpells(data)
     .then((spells) => res.status(201).send(spells))

@@ -25,4 +25,10 @@ const createSpells = (data) => {
     )
     .then((result) => result.rows[0]);
 };
-module.exports = { readSpellById, readAllSpells, createSpells };
+
+//delete spells
+const deleteSpells = (id) => {
+  return db.query("DELETE FROM spells WHERE id=$1", [id]);
+};
+
+module.exports = { readSpellById, readAllSpells, createSpells, deleteSpells };
