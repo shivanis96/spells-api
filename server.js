@@ -4,11 +4,13 @@ const spells = require("./handlers/spells");
 const user = require("./handlers/users");
 const handleError = require("./middleware/error");
 const verifyUser = require("./middleware/auth");
+const cors = require("cors");
 
 const PORT = process.env.PORT || 3000;
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 //spells routes
