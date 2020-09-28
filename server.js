@@ -14,6 +14,7 @@ app.use(express.json());
 //spells routes
 app.get("/spells/", spells.getAllSpells);
 app.get("/spells/:id", spells.getSpellById);
+app.post("/spells/", verifyUser, spells.createSpells);
 
 //user routes
 app.get("/users/:id", user.getUserById);
@@ -21,6 +22,6 @@ app.get("/users", user.getAllUsers);
 app.post("/signup", user.signup);
 app.post("/login", user.login);
 
-//app.use(handleError);
+app.use(handleError);
 
 app.listen(PORT, () => console.log(`Listening on http:localhost:${PORT}`));

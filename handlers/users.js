@@ -41,6 +41,9 @@ const login = (req, res, next) => {
           const token = jwt.sign({ user: user.id }, SECRET, {
             expiresIn: "1h",
           });
+          const verify = jwt.verify(token, SECRET);
+          console.log(token);
+          console.log(verify);
           res.status(200).send({ access_token: token });
         }
       });

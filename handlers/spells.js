@@ -18,4 +18,14 @@ const getAllSpells = (req, res, next) => {
     .catch(next);
 };
 
-module.exports = { getSpellById, getAllSpells };
+const createSpells = (req, res, next) => {
+  const data = {
+    author_id: req.user.id,
+    spell_name: req.body.spell_name,
+  };
+  model
+    .createSpells(data)
+    .then((spells) => res.status(201).send(spells))
+    .catch(next);
+};
+module.exports = { getSpellById, getAllSpells, createSpells };

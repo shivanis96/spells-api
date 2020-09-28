@@ -16,4 +16,13 @@ const readAllSpells = () => {
   return db.query("SELECT * FROM spells").then((result) => result.rows);
 };
 
-module.exports = { readSpellById, readAllSpells };
+//creates spells
+const createSpells = (data) => {
+  return db
+    .query(
+      "INSERT INTO spells (author_id, spell_name) VALUES ($1, $2) RETURNING *",
+      [data.author_id, data.spell_name]
+    )
+    .then((result) => result.rows[0]);
+};
+module.exports = { readSpellById, readAllSpells, createSpells };

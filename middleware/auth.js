@@ -11,17 +11,19 @@ const verifyUser = (req, res, next) => {
     next(error);
   }
   const token = authHeader.replace("Bearer ", "");
+
   try {
     const data = jwt.verify(token, SECRET);
     model
-      .getUserById(data.user)
+      .readUserById(data.user)
       .then((user) => {
         req.user = user;
         next();
       })
       .catch(next);
   } catch (_error) {
-    const error = new Error("Invalid token");
+    console.log(_error);
+    const error = new Error(_error);
     error.status = 401;
     next(error);
   }
