@@ -41,9 +41,6 @@ const login = (req, res, next) => {
           const token = jwt.sign({ user: user.id }, SECRET, {
             expiresIn: "1h",
           });
-          const verify = jwt.verify(token, SECRET);
-          console.log(token);
-          console.log(verify);
           res.status(200).send({ access_token: token });
         }
       });
@@ -52,7 +49,6 @@ const login = (req, res, next) => {
 };
 const getUserById = (req, res, next) => {
   const id = req.params.id;
-  //console.log(id);
   model
     .readUserById(id)
     .then((user) => {

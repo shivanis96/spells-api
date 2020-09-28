@@ -22,7 +22,6 @@ const verifyUser = (req, res, next) => {
       })
       .catch(next);
   } catch (_error) {
-    console.log(_error);
     const error = new Error(_error);
     error.status = 401;
     next(error);

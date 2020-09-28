@@ -18,6 +18,7 @@ app.get("/spells/", spells.getAllSpells);
 app.get("/spells/:id", spells.getSpellById);
 app.post("/spells/", verifyUser, spells.createSpells);
 app.delete("/spells/:id", verifyUser, spells.deleteSpells);
+app.put("/spells/:id", verifyUser, spells.updateSpells);
 
 //user routes
 app.get("/users/:id", user.getUserById);

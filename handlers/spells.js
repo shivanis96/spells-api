@@ -2,7 +2,6 @@ const model = require("../model/spells");
 
 const getSpellById = (req, res, next) => {
   const id = req.params.id;
-  console.log(id);
   model
     .readSpellById(id)
     .then((spells) => {
@@ -47,4 +46,31 @@ const deleteSpells = (req, res, next) => {
     }
   });
 };
-module.exports = { getSpellById, getAllSpells, createSpells, deleteSpells };
+
+const updateSpells = (req, res, next) => {
+  const spellId = req.params.id;
+  const userId = req.user.id;
+  const newSpell = req.body.spell_name;
+  model
+    .readSpellById(spellId)
+    .then((spell) => {
+      if (spell.author_id !== userId) {
+        const error = new Error("User not authorised");
+        error.status = 401;
+        next(error);
+      } else {
+        model
+          .updateSpell(newSpell, spellId)
+          .then((spell) => res.status(200).send(spell));
+      }
+    })
+    .catch(next);
+};
+
+module.exports = {
+  getSpellById,
+  getAllSpells,
+  createSpells,
+  deleteSpells,
+  updateSpells,
+};
