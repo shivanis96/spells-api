@@ -33,9 +33,8 @@ const deleteSpell = (id) => {
 const updateSpell = (name, spell_id) => {
   return db
     .query(
-      "UPDATE spells SET spell_name = $1 WHERE author_id = $2 RETURNING *"[
-        (name, spell_id)
-      ]
+      "UPDATE spells SET spell_name = $1 WHERE author_id = $2 RETURNING *",
+      [name, spell_id]
     )
     .then((result) => result.rows[0]);
 };
