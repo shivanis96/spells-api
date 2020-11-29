@@ -9,7 +9,12 @@ const readSpellById = (id) => {
     })
     .catch((err) => console.log(err));
 };
-
+//get spells by name
+const readSpellByName = name => {
+  return db
+    .query("SELECT * FROM spells WHERE spell_name=($1)", [name])
+    .then(result => result.rows);
+};
 //gets all spells
 const readAllSpells = () => {
   return db.query("SELECT * FROM spells").then((result) => result.rows);
@@ -40,6 +45,7 @@ const updateSpell = (name, spell_id) => {
 };
 module.exports = {
   readSpellById,
+  readSpellByName,
   readAllSpells,
   createSpell,
   deleteSpell,

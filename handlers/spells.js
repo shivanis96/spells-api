@@ -10,6 +10,16 @@ const getSpellById = (req, res, next) => {
     .catch(next);
 };
 
+const getSpellByName = (req, res, next) => {
+  const name = req.params.name;
+  model
+    .readSpellByName(name)
+    .then(spells => {
+      res.send(spells);
+    })
+    .catch(next);
+};
+
 const getAllSpells = (req, res, next) => {
   model
     .readAllSpells()
@@ -69,6 +79,7 @@ const updateSpells = (req, res, next) => {
 
 module.exports = {
   getSpellById,
+  getSpellByName,
   getAllSpells,
   createSpells,
   deleteSpells,

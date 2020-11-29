@@ -15,6 +15,7 @@ app.use(express.json());
 
 //spells routes
 app.get("/spells/", spells.getAllSpells);
+app.get("/spells/:name", spells.getSpellByName);
 app.get("/spells/:id", spells.getSpellById);
 app.post("/spells/", verifyUser, spells.createSpells);
 app.delete("/spells/:id", verifyUser, spells.deleteSpells);
